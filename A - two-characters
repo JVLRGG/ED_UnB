@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+void organizador(char temp1[],int n){
+    for(int i=0;i<n+1;i++){
+        if(temp1[i]=='*'){
+                for(int j=i+1;j<n+1;j++){
+                     if(temp1[j]!='*'){
+                        temp1[i]=temp1[j];
+                        temp1[j]='*';
+                        break;
+                    }
+                }
+        }
+    }
+}
+int contador(char temp1[]){
+    int valor=0;
+    for(int i=1;temp1[i]!='*';i++){
+        if(temp1[i-1]==temp1[i]){
+            return 0;
+        }
+    }
+    for(int i=0;temp1[i]!='*';i++){
+        valor++;
+    }
+    return valor;
+}
+void analise(char palavra[],char letras[],int n){
+    char temp1[n+1];
+    int maior=0;
+    for(int i=0;letras[i]!='\0';i++){ 
+        int valor=0;
+        for(int j=i+1;letras[j]!='\0';j++){
+            strcpy(temp1,palavra);
+            for(int k=0;k<n+1;k++){
+                if(temp1[k]!=letras[i] && temp1[k]!=letras[j]){
+                    temp1[k]='*';       
+                }
+            }
+            organizador(temp1,n);
+            valor = contador(temp1);
+            if(valor>maior){
+                maior=valor;
+            }
+            
+        }
+    }
+    printf("%d\n",maior);
+}
+void fragmenta_string(char palavra[],char letras[],int tamanho){
+    int aux = 0;
+    for(int i=0;i<tamanho+1;i++){
+        for(int j=i+1;j<tamanho+1;j++){
+            if(palavra[i]==letras[j]){
+                    letras[j]='*';
+                    aux = 1;
+            }
+        }
+    }
+    if(aux == 1){
+        organizador(letras,tamanho);
+    }
+}
+int main() {
+    int quant_letras=0;
+    scanf("%d",&quant_letras);
+    char string[quant_letras+1], letras[quant_letras+1];
+    scanf("%s",string);
+    strcpy(letras,string);
+    if(quant_letras==1){
+        printf("0\n");
+    }else{
+        fragmenta_string(string,letras,quant_letras);
+        analise(string,letras,quant_letras);
+    }
+    
+    return 0;
+}
