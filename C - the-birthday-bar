@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+void calculo(int vetor[],int x,int d,int m){
+    int aux=0;
+    for(int i=0;i<x;i++){
+        int soma=0;
+        for(int j=i;j<i+m;j++){
+            soma+=vetor[j];
+            if(soma==d && j+1==i+m){
+                aux++;
+            }
+        }
+    }
+    printf("%d\n",aux);
+}
+int main() {
+
+    int x,d,m;;
+    scanf("%d",&x);
+    int barra[x];
+    for(int i=0;i<x;i++){
+        scanf("%d",&barra[i]);
+    }
+    scanf("%d %d",&d,&m);
+    calculo(barra,x,d,m);
+    return 0;
+}
