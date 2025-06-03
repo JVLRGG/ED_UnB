@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include <stdlib.h>
+#define max 100 
+void preenchedor(int vetor[],int x){
+    for(int i=0;i<x;i++){
+        scanf("%d",&vetor[i]);
+    }
+}
+void calculo(int vetor[],int x,int y){
+    int contador=0;
+    for(int i=0;i<x-1;i++){
+        for(int j=i+1;j<x;j++){
+            int soma=vetor[i]+vetor[j];
+            
+            if(soma%y==0){
+                contador++;
+            }
+        }        
+    }
+    printf("%d\n",contador);
+}
+int main(){
+    int n,k,vetor[max];
+    scanf("%d %d",&n,&k);
+    preenchedor(vetor,n);
+    calculo(vetor,n,k);
+    return 0;
+}
