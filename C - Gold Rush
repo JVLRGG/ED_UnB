@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int funcao(int n,int m);
+
+int main(){
+    
+    int t;
+    scanf("%d",&t);
+    while(t--){
+        int x,y;
+        scanf("%d %d",&x,&y);
+        int resposta = funcao(x,y);
+        
+        if(resposta==1){
+            printf("YES\n");
+        }else{
+            printf("NO\n"); 
+        }
+    }
+    return 0;
+}
+int funcao(int n,int m){    
+    if(n==m){
+        return 1;
+    }
+    if(n<m || n%3!=0){
+        return 0;
+    }
+    return funcao(n/3,m) || funcao(2*n/3,m);
+}
