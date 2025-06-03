@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct No{
+    int dado;
+    struct No* prox;
+} No;
+
+typedef struct Lista{
+    No* inicio;  
+    int tamanho; 
+} Lista;
+
+Lista* criaLista();
+void append(Lista* l, int item);
+void removeItem(Lista* l, int item);
+void imprimeLista(Lista* l);
+
+int main() {
+    Lista* minhaLista = criaLista();
+    int x;
+    scanf("%d",&x);
+    while(x--){
+        int y;
+        scanf("%d",&y);
+        append(minhaLista,y);
+    }
+    scanf("%d",&x);
+    removeItem(minhaLista,x);
+    imprimeLista(minhaLista);
+    return 0;
+}
+Lista* criaLista() {
+    Lista* lista = (Lista*) malloc(sizeof(Lista));
+    lista->inicio = NULL;
+    lista->tamanho = 0;
+    return lista;
+}
+void append(Lista* l, int item) {
+    No* novo = (No*) malloc(sizeof(No));
+    novo->dado = item;
+    novo->prox = NULL;
+
+    if (l->inicio == NULL) {
+        l->inicio = novo;
+    } else {
+        No* atual = l->inicio;
+        while (atual->prox != NULL) {
+            atual = atual->prox;
+        }
+        atual->prox = novo;
+    }
+    l->tamanho++;
+}
+void removeItem(Lista* l, int position) {
+    if (l->inicio == NULL || position < 0 || position >= l->tamanho) {
+        return;
+    }
+
+    No* atual = l->inicio;
+    No* anterior = NULL;
+    int i = 0;
+
+    while (atual != NULL && i < position) {
+        anterior = atual;
+        atual = atual->prox;
+        i++;
+    }
+
+    if (atual == NULL) {
+        return;
+    }
+
+    if (anterior == NULL) {
+        l->inicio = atual->prox;
+    } else {
+        anterior->prox = atual->prox;
+    }
+
+    free(atual);
+    l->tamanho--;
+}
+void imprimeLista(Lista* l) {
+    No* atual = l->inicio;
+    printf("Lista: ");
+    while (atual != NULL) {
+        printf("%d ", atual->dado);
+        atual = atual->prox;
+    }
+    printf("\n");
+}
