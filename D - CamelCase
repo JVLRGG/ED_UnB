@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include <stdlib.h>
+#define max 1000000
+int analisador(char palavra){
+    int aux=0;
+    if(palavra>=65 && palavra<=90){
+            aux=1;
+    }
+    return aux;
+}
+void contador(char texto[max]){
+    int quantidade=1;
+    for(int i=0;texto[i]!='\0';i++){
+        int aux = analisador(texto[i]);
+        if(aux==1){
+            quantidade++;
+        }
+    }
+    printf("%d\n",quantidade);
+}
+int main(){
+    char text_s[max];
+    scanf("%s",text_s);
+    contador(text_s);    
+    return 0;
+}
