@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+void preenchedor(int vetor_auxiliar[],int aux){
+    for(int i=0;i<aux;i++){
+        scanf("%d",&vetor_auxiliar[i]);
+    }
+}
+int contador(int vetor_auxiliar[],int aux,int position_start,int position_end,int position_tree){
+    int contadorr=0;
+    for(int i=0;i<aux;i++){
+        int calculo = position_tree + vetor_auxiliar[i];
+        if(calculo>=position_start && calculo<=position_end){
+            contadorr++;
+        } 
+    }
+    return contadorr;
+}
+int main() {
+
+    int house_S,house_T,tree_A,tree_B,m,n;
+    scanf("%d %d %d %d %d %d",&house_S,&house_T,&tree_A,&tree_B,&m,&n);
+    int *apples_positions = (int*)malloc(m * sizeof(int));
+    int *oranges_positions = (int*)malloc(n * sizeof(int));
+
+    preenchedor(apples_positions,m);
+    preenchedor(oranges_positions,n);
+
+    int quantidade_macas = contador(apples_positions,m,house_S,house_T,tree_A);
+    int quantidade_laranjas = contador(oranges_positions,n,house_S,house_T,tree_B);
+
+    printf("%d\n",quantidade_macas);
+    printf("%d\n",quantidade_laranjas);
+
+    free(apples_positions);
+    free(oranges_positions);
+    return 0;
+}
