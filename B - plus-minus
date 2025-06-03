@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int valor;
+    scanf("%d",&valor);
+    int tamanho = valor;
+    int positivo=0,negativo=0,zeros=0;
+    for(int i=0;i<tamanho;i++){
+        scanf("%d",&valor);
+        if(valor>0){
+            positivo++;
+        }else if(valor<0){
+            negativo++;
+        }else{
+            zeros++;
+        }
+    }
+    printf("%f\n",(float)positivo/tamanho);
+    printf("%f\n",(float)negativo/tamanho);
+    printf("%f\n",(float)zeros/tamanho);
+    return 0;
+}
