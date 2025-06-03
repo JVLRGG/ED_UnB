@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include <stdlib.h>
+void preenchedor(int matriz[6][6]){
+    for(int i=0;i<6;i++){
+        for(int j=0;j<6;j++){
+            scanf("%d",&matriz[i][j]);
+        }
+    }
+}
+void analisador(int matriz[6][6]){
+    int maior,pog=1;    
+    for(int i=0;i<4;i++){
+        for(int j=0;j<4;j++){
+           int soma = matriz[i][j]+matriz[i][j+1]+matriz[i][j+2]+matriz[i+1][j+1]+matriz[i+2][j]+matriz[i+2][j+1]+matriz[i+2][j+2];
+           if(pog){
+                maior=soma;
+                pog=0;
+           }else if(soma>maior){
+                maior=soma;
+           }  
+        }
+    }
+    printf("%d\n",maior);
+}
+int main(){
+    int matriz[6][6];
+    preenchedor(matriz);
+    analisador(matriz);  
+    return 0;
+}
