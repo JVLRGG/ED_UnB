@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+void print_numbers(int vetor[],int tamanho){
+    for(int i=0;i<tamanho;i++){
+        printf("%d",vetor[i]);
+        if(i!=tamanho-1){printf(" ");}else{printf("\n");};
+    }
+}
+void rotLeft(int vetor[],int tamanho){
+    int aux = vetor[0];
+    for(int i=0;i<tamanho-1;i++){
+        vetor[i]=vetor[i+1];
+    }
+    vetor[tamanho-1]=aux;
+}
+void put_numbers(int vetor[],int tamanho){
+    for(int i=0;i<tamanho;i++){
+        scanf("%d",&vetor[i]);
+    }
+}
+int main() {
+    int tamanho,rot_quants;
+    scanf("%d %d",&tamanho,&rot_quants);
+    int *numbers = malloc(tamanho * sizeof(int));
+    
+    put_numbers(numbers,tamanho);
+    while(rot_quants--){
+        rotLeft(numbers,tamanho);
+    }
+    
+    print_numbers(numbers,tamanho);
+    free(numbers);
+    return 0;
+}
