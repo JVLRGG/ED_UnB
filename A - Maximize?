@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void maior_inteiro(int vetor[],int n);
+int gcc(int a,int b);
+
+int main(){
+    
+    int quantidade;
+    scanf("%d",&quantidade);
+    int* array = (int*) malloc(quantidade * sizeof(int));
+    
+    for(int i=0;i<quantidade;i++){
+        scanf("%d",&array[i]);
+    }
+    maior_inteiro(array,quantidade);
+    
+    free(array);
+    return 0;
+}
+void maior_inteiro(int vetor[],int n){
+    for(int i=0;i<n;i++){
+        int maior;
+        int x = vetor[i];
+        int y_qualquer;
+
+        for(int y = 1;y < x;y ++){
+            int divsor = gcc(x,y) + y;
+            if(y==1){
+                maior = divsor;
+                y_qualquer = y;
+            }else if(divsor > maior){
+                maior = divsor;
+                y_qualquer = y;
+            }
+        }
+
+        printf("%d\n",y_qualquer);
+    }
+}
+int gcc(int a,int b){
+    while(b!=0){
+        int aux = b;
+        b = a % b;
+        a = aux;
+    }
+    return a;
+}
+
