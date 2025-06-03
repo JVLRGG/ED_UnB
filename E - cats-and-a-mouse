@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+
+    int catA,catB,mouse,valor;
+    scanf("%d",&valor);
+
+    for(int i=0;i<valor;i++){
+        scanf("%d %d %d",&catA,&catB,&mouse);
+        int n1 = abs(catA-mouse);
+        int n2 = abs(catB-mouse);
+        if(n1>n2){
+            printf("Cat B\n");
+        }else if(n1<n2){
+            printf("Cat A\n");
+        }else{
+            printf("Mouse C\n");
+        }
+    }
+    return 0;
+}
