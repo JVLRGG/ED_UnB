@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int soma(int x);
+
+int main(){
+    int n;
+    scanf("%d",&n);
+    int soma_real = soma(n);
+    int soma_falsa=0;
+    for(int i=0;i<n-1;i++){
+        int x;
+        scanf("%d",&x);
+        soma_falsa+=x;
+    }
+    printf("%d",abs(soma_falsa-soma_real));
+    return 0;
+}
+int soma(int x){
+    int result=0;
+    while(x!=0){    
+        result+=x;
+        x--;
+    }
+    return result;
+}
