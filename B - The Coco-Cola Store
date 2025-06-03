@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int funcao(int n);
+
+int main(){
+    
+    int garrafa=1;
+    do{
+        scanf("%d",&garrafa);
+        if(garrafa!=0){
+            int com_emprestimo = funcao(garrafa+1);
+            int sem_emprestimo = funcao(garrafa);
+            int total = (com_emprestimo > sem_emprestimo) ? com_emprestimo : sem_emprestimo;
+            printf("%d\n",total);
+        }
+    }while(garrafa);
+    
+    return 0;
+}
+int funcao(int n){
+    if(n<3){
+        return 0;
+    }
+    int garrafas_bebidas = n/3;
+    int garrafas_vazias = (n%3) + garrafas_bebidas;
+    garrafas_bebidas += funcao(garrafas_vazias);
+    return garrafas_bebidas;
+}
