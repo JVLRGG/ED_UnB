@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define max 1000001
+int main(){
+    char dna[max];
+    scanf("%s",dna);
+    
+    int max_count = 1;
+    int current_count = 1;
+    int n = strlen(dna);
+
+    for (int i = 1; i < n; i++) {
+        if (dna[i] == dna[i - 1]) {
+            current_count++;
+            if (current_count > max_count) {
+                max_count = current_count;
+            }
+        } else {
+            current_count = 1;
+        }
+    }
+
+    printf("%d\n", max_count);
+    
+    return 0;
+}
