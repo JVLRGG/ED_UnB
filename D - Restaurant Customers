@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int time;
+    int type; 
+} Event;
+
+int compare(const void *a, const void *b) {
+    Event *eventA = (Event *)a;
+    Event *eventB = (Event *)b;
+    if (eventA->time != eventB->time) {
+        return eventA->time - eventB->time;
+    }
+    return eventB->type - eventA->type; 
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    Event *events = (Event *)malloc(2 * n * sizeof(Event));
+    if (events == NULL) return 1;
+
+    for (int i = 0; i < n; i++) {
+        int a, b;
+        scanf("%d %d", &a, &b);
+        events[2 * i].time = a;
+        events[2 * i].type = 1;
+        events[2 * i + 1].time = b;
+        events[2 * i + 1].type = -1;
+    }
+
+    qsort(events, 2 * n, sizeof(Event), compare);
+
+    int current = 0;
+    int max_clients = 0;
+    for (int i = 0; i < 2 * n; i++) {
+        current += events[i].type;
+        if (current > max_clients) {
+            max_clients = current;
+        }
+    }
+
+    printf("%d\n", max_clients);
+    free(events);
+    return 0;
+}
