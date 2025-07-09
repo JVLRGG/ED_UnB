@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include "lista.h"
+
+int main(){
+    int x=1;int y;//valor descartavel
+    Lista* minhalista = NULL;
+    while(x){
+        puts("___________________________________");
+        puts("0 - Sair");
+        puts("1 - Criar uma lista");
+        puts("2 - Adicionar um valor a lista");
+        puts("3 - Remover item da lista");
+        puts("4 - Imprimir Lista");
+        puts("___________________________________");
+        scanf("%d",x);
+         switch (x) {
+            case 0:
+                x = 0;
+                break;
+
+            case 1: {
+                minhalista = criaLista();
+                puts("Lista criada com sucesso.");
+                break;
+            }
+
+            case 2: {
+                if (minhalista == NULL) {
+                    puts("Crie a lista primeiro (opção 1).");
+                    break;
+                }
+                puts("Insira um valor:");
+                scanf("%d", &y);
+                add(minhalista, y);
+                break;
+            }
+
+            case 3: {
+                if (minhalista == NULL) {
+                    puts("Crie a lista primeiro (opção 1).");
+                    break;
+                }
+                puts("Insira o valor a ser removido:");
+                scanf("%d", &y);
+                removeItem(minhalista, y);
+                break;
+            }
+
+            case 4: {
+                if (minhalista == NULL) {
+                    puts("Crie a lista primeiro (opção 1).");
+                    break;
+                }
+                imprimeLista(minhalista);
+                break;
+            }
+
+            default:
+                puts("Opção inválida.");
+                break;
+        }
+    }
+    return 0;
+}

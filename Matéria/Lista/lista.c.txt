@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "lista.h"
+
+Lista* criaLista(){
+
+    Lista* l = (Lista*)malloc(sizeof(Lista));
+    l->inicio = NULL;
+    l->tamanho = 0;
+    return l;
+
+}
+void add(Lista* l, int item){
+
+    No* novo = (No*) malloc(sizeof(No));
+    novo->dado = item;
+    novo->prox = l->inicio;
+    l->inicio = novo;
+    l->tamanho++;
+
+}
+int removeItem(Lista* l, int item){
+    
+    No* atual = l->inicio;
+    No* anterior = NULL;
+
+    while (atual != NULL) {
+        
+        if (atual->dado == item) {
+            if (anterior == NULL) {
+                l->inicio = atual->prox;
+            } else {
+                anterior->prox = atual->prox;
+            }
+            free(atual);
+            l->tamanho--;
+            return 1;
+        }
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    return 0; // Não encontrado
+
+}
+int search(Lista* l, int item){
+    
+}
+int isEmpty(Lista* l){}
+void append(Lista* l, int item){}
+int indice(Lista* l, int item){}
+int insert(Lista* l, int pos, int item){}
+int insereOrdenado(Lista* l, int item){}
+int pop(Lista* l){}
+int popPos(Lista* l, int pos){}
+void imprimeLista(Lista* l){
+    
+    No* atual = l->inicio;
+    while (atual != NULL) {
+        printf("%d -> ", atual->dado);
+        atual = atual->prox;
+    }
+    printf("NULL\n");
+
+}
+int liberaLista(Lista* l){}
